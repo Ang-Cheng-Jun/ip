@@ -16,12 +16,10 @@ public class Duke {
                 for (int i = 1; i <= num; i++) {
                     list[i - 1].displayList(i);
                 }
-            }
-            else if(command.contains("done")) {
+            } else if(command.contains("done")) {
                 String[] word = command.split(" ");
                 list[Integer.parseInt(word[1]) - 1].markAsDone();
-            }
-            else {
+            } else {
                 list[num] = new Task(command);
                 System.out.println("added: " + command);
                 num++;

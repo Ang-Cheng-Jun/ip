@@ -8,7 +8,11 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        if(!isDone) {
+            return ("\u2718");
+        } else {
+            return ("\u2713");
+        }
     }
 
     public void markAsDone() {
@@ -18,7 +22,8 @@ public class Task {
     }
 
     public void displayList(int num) {
-        System.out.println(num + "." + "[" + getStatusIcon() + "] " + description);
+        String icon = getStatusIcon();
+        System.out.println(num + "." + "[" + icon + "] " + description);
     }
 }
 
