@@ -8,7 +8,6 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
         Task[] list = new Task[100];
-
         int num = 0;
 
         while(!command.equals("bye")) {
