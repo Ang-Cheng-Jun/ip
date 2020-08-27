@@ -7,19 +7,23 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
-        String[] list = new String[100];
-        String exit = new String("bye");
-        String display = new String("list");
+        Task[] list = new Task[100];
+
         int num = 0;
 
-        while(exit.equals(command) == false) {
-            if(display.equals(command) == true) {
+        while(!command.equals("bye")) {
+            if(command.equals("list")) {
+                System.out.println("Here are the tasks in your list:");
                 for (int i = 1; i <= num; i++) {
-                    System.out.println(i + "." + list[i - 1]);
+                    list[i - 1].displayList(i);
                 }
             }
+            else if(command.contains("done")) {
+                String[] word = command.split(" ");
+                list[Integer.parseInt(word[1]) - 1].markAsDone();
+            }
             else {
-                list[num] = command;
+                list[num] = new Task(command);
                 System.out.println("added: " + command);
                 num++;
             }
