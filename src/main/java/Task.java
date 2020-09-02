@@ -1,11 +1,14 @@
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String category;
 
     public Task(String description) {
         this.description = description;
+        this.category = "";
         this.isDone = false;
     }
+
 
     public String getStatusIcon() {
         if(!isDone) {
@@ -17,13 +20,12 @@ public class Task {
 
     public void markAsDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[" + getStatusIcon() + "] " + description);
     }
 
-    public void displayList(int num) {
-        String icon = getStatusIcon();
-        System.out.println(num + "." + "[" + icon + "] " + description);
+
+    @Override
+    public String toString() {
+        return "[" + getStatusIcon() + "] " + description;
     }
 }
 
