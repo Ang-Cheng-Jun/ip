@@ -9,7 +9,7 @@ public class Task {
         this.isDone = false;
     }
 
-
+    //Get a icon for the task
     public String getStatusIcon() {
         if(!isDone) {
             return ("\u2718");
@@ -18,10 +18,10 @@ public class Task {
         }
     }
 
+    //Put a tick in the task
     public void markAsDone() {
         this.isDone = true;
     }
-
 
     @Override
     public String toString() {
