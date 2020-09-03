@@ -72,7 +72,7 @@ public class Duke {
     //Add task under the "deadline" category
     private static int storeDeadline(Task[] list, String command, int num) {
         String description = command.substring(9, command.indexOf(" /"));
-        String by = command.substring(command.lastIndexOf("by ") + 3);
+        String by = command.substring(command.indexOf("/") + 3);
         list[num] = new Deadline(description, by);
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + list[num]);
@@ -85,7 +85,7 @@ public class Duke {
     //Add task under the "event" category
     private static int storeEvent(Task[] list, String command, int num) {
         String description = command.substring(6, command.indexOf(" /"));
-        String at = command.substring(command.indexOf("at") + 3);
+        String at = command.substring(command.indexOf("/") + 3);
         list[num] = new Event(description, at);
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + list[num]);
