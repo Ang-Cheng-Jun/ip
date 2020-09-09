@@ -5,8 +5,8 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
-        this.category = "";
-        this.isDone = false;
+        category = "";
+        isDone = false;
     }
 
     //Get a icon for the task
@@ -19,7 +19,7 @@ public class Task {
     }
 
     //Put a tick in the task
-    public void markAsDone() {
+    public void putTick() {
         this.isDone = true;
     }
 

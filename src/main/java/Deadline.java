@@ -7,8 +7,8 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
-        this.isDone = false;
-        this.category = "[D]";
+        isDone = false;
+        category = "[D]";
     }
 
     @Override

@@ -7,8 +7,8 @@ public class Event extends Task {
     public Event(String description, String at) {
         super(description);
         this.at = at;
-        this.isDone = false;
-        this.category = "[E]";
+        isDone = false;
+        category = "[E]";
     }
 
     @Override

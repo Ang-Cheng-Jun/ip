@@ -5,8 +5,8 @@ public class Todo extends Task {
 
     public Todo(String description) {
         super(description);
-        this.isDone = false;
-        this.category = "[T]";
+        isDone = false;
+        category = "[T]";
     }
 
     @Override
