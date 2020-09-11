@@ -1,5 +1,3 @@
-package duke;
-
 public class Todo extends Task {
 
     protected boolean isDone;

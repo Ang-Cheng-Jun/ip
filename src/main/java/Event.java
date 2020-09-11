@@ -1,5 +1,3 @@
-package duke;
-
 public class Event extends Task {
 
     protected String at;

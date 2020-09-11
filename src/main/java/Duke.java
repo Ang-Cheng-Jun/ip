@@ -1,7 +1,6 @@
 //A0202021L
 
 import java.util.Scanner;
-import duke.*;
 
 public class Duke {
     //Main Program
