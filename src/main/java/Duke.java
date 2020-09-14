@@ -1,7 +1,9 @@
 //A0202021L
 
-import java.util.Scanner;
 import duke.*;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Duke {
     //Main Program
@@ -11,23 +13,32 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
-        Task[] list = new Task[100];
+        ArrayList<Task> list = new ArrayList<>();
         int num = 0;
 
-        while(!command.equals("bye")) {
+        while (!command.equals("bye")) {
             String actionType = extractAction(command); //Find out what action to be taken
             switch (actionType) {
-            case "list": printList(list, num); //Print the list of tasks
+            case "list":
+                printList(list, num); //Print the list of tasks
                 break;
-            case "done": markAsDone(list, command, num); //Put a tick in the task
+            case "done":
+                markAsDone(list, command, num); //Put a tick in the task
                 break;
-            case "todo": num = storeTodo(list, command, num); //Add task under the "td" category
+            case "todo":
+                num = storeTodo(list, command, num); //Add task under the "td" category
                 break;
-            case "deadline": num = storeDeadline(list, command, num); //Add task under the "deadline" category
+            case "deadline":
+                num = storeDeadline(list, command, num); //Add task under the "deadline" category
                 break;
-            case "event": num = storeEvent(list, command, num); //Add task under the "event" category
+            case "event":
+                num = storeEvent(list, command, num); //Add task under the "event" category
                 break;
-            default : System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
+            case "delete":
+                num = deleteTask(list, command, num);
+                break;
+            default :
+                System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
                 break;
             }
             System.out.println("\n");
@@ -45,35 +56,36 @@ public class Duke {
     }
 
     //Print the list of tasks
-    private static void printList(Task[] list, int num) {
+    private static void printList(ArrayList<Task> list, int num) {
         System.out.println("Here are the tasks in your list:");
         for (int i = 1; i <= num; i++) {
-            System.out.println(i + "." + list[i - 1]);
+            System.out.println(i + "." + list.get(i - 1));
         }
     }
 
     //Put a tick in the task
-    private static void markAsDone(Task[] list, String command, int num) {
+    private static void markAsDone(ArrayList<Task> list, String command, int num) {
         try {
             String[] word = command.split(" ");
-            if((Integer.parseInt(word[1]) - 1) >= num) {
+            int index = Integer.parseInt(word[1]) - 1;
+            if (index >= num) {
                 throw new ArrayIndexOutOfBoundsException();
             }
-            list[Integer.parseInt(word[1]) - 1].putTick();
+            list.get(index).putTick();
             System.out.println("Nice! I've marked this task as done:");
-            System.out.println(" " + list[Integer.parseInt(word[1]) - 1]);
+            System.out.println(" " + list.get(index));
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("\u2639 The number is not in the list");
         }
     }
 
     //Add task under the "td" category
-    private static int storeTodo(Task[] list, String command, int num) {
+    private static int storeTodo(ArrayList<Task> list, String command, int num) {
         try {
             String description = command.substring(5);
-            list[num] = new Todo(description);
+            list.add(new Todo(description));
             System.out.println("Got it. I've added this task:");
-            System.out.println(" " + list[num]);
+            System.out.println(" " + list.get(num));
             num++;
             System.out.println("Now you have " + num + " tasks in the list.");
         } catch (StringIndexOutOfBoundsException e) {
@@ -84,16 +96,16 @@ public class Duke {
     }
 
     //Add task under the "deadline" category
-    private static int storeDeadline(Task[] list, String command, int num) {
+    private static int storeDeadline(ArrayList<Task> list, String command, int num) {
         try {
             String description = command.substring(9, command.indexOf(" /"));
             String by = command.substring(command.indexOf("/") + 3);
-            if(by.trim().isEmpty()) {
+            if (by.trim().isEmpty()) {
                 throw new DukeException();
             }
-            list[num] = new Deadline(description, by);
+            list.add(new Deadline(description, by));
             System.out.println("Got it. I've added this task:");
-            System.out.println(" " + list[num]);
+            System.out.println(" " + list.get(num));
             num++;
             System.out.println("Now you have " + num + " tasks in the list.");
         } catch (StringIndexOutOfBoundsException e) {
@@ -105,22 +117,41 @@ public class Duke {
     }
 
     //Add task under the "event" category
-    private static int storeEvent(Task[] list, String command, int num) {
+    private static int storeEvent(ArrayList<Task> list, String command, int num) {
         try {
             String description = command.substring(6, command.indexOf(" /"));
             String at = command.substring(command.indexOf("/") + 3);
             if(at.trim().isEmpty()) {
                 throw new DukeException();
             }
-            list[num] = new Event(description, at);
+            list.add(new Event(description, at));
             System.out.println("Got it. I've added this task:");
-            System.out.println(" " + list[num]);
+            System.out.println(" " + list.get(num));
             num++;
             System.out.println("Now you have " + num + " tasks in the list.");
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("\u2639 The description of a event cannot be empty.");
         } catch (DukeException e) {
             System.out.println("\u2639 The date/time of a event cannot be empty.");
+        }
+        return num;
+    }
+
+    //Delete the task
+    private static int deleteTask(ArrayList<Task> list, String command, int num) {
+        try {
+            String[] word = command.split(" ");
+            int index = Integer.parseInt(word[1]) - 1;
+            if (index >= num) {
+                throw new ArrayIndexOutOfBoundsException();
+            }
+            System.out.println("Noted. I've removed this task: ");
+            System.out.println(" " + list.get(index));
+            list.remove(index);
+            num--;
+            System.out.println("Now you have " + num + " tasks in the list.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("\u2639 The number is not in the list");
         }
         return num;
     }
