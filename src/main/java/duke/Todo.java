@@ -11,6 +11,10 @@ public class Todo extends Task {
         category = "[T]";
     }
 
+    public String getCategory() {
+        return "T";
+    }
+
     @Override
     public String toString() {
         return this.category + super.toString();

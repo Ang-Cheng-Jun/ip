@@ -1,18 +1,29 @@
 //A0202021L
 
-import java.util.Scanner;
 import duke.*;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class Duke {
     //Main Program
     public static void main(String[] args) {
+        String file1 = "data/duke.txt";
+        Task[] list = new Task[100];
+        int num = 0;
+        try {
+            num = importFileContents(file1, list);
+        } catch (IOException e) {
+            System.out.println("File not found. Create a new file \n");
+        }
+
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?\n");
 
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
-        Task[] list = new Task[100];
-        int num = 0;
 
         while(!command.equals("bye")) {
             String actionType = extractAction(command); //Find out what action to be taken
@@ -29,6 +40,11 @@ public class Duke {
                 break;
             default : System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
                 break;
+            }
+            try {
+                writeToFile(file1, list, num);
+            } catch (IOException e) {
+                System.out.println("Something went wrong: " + e.getMessage());
             }
             System.out.println("\n");
             command = sc.nextLine(); //Get the next command
@@ -121,6 +137,44 @@ public class Duke {
             System.out.println("\u2639 The description of a event cannot be empty.");
         } catch (DukeException e) {
             System.out.println("\u2639 The date/time of a event cannot be empty.");
+        }
+        return num;
+    }
+
+    private static void writeToFile(String filePath, Task[] list, int num) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        for (int i = 1; i <= num; i++) {
+            if (list[i-1].getCategory() == "T") {
+                fw.write(list[i-1].getCategory() + "|" + list[i-1].getIsDone() + "|" + list[i-1].getDescription() + System.lineSeparator());
+            } else if (list[i-1].getCategory() == "D") {
+                fw.write(list[i-1].getCategory() + "|" + list[i-1].getIsDone() + "|" + list[i-1].getDescription() + "|" + list[i-1].getBy()+ System.lineSeparator());
+            } else {
+                fw.write(list[i-1].getCategory() + "|" + list[i-1].getIsDone() + "|" + list[i-1].getDescription() + "|" + list[i-1].getAt()+ System.lineSeparator());
+            }
+        }
+        fw.close();
+    }
+
+    private static int importFileContents(String filePath, Task[] list) throws IOException {
+        int num = 0;
+        File dir = new File("data");
+        dir.mkdir();
+        File f = new File(filePath); // create a File for the given file path
+        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        f.createNewFile();
+        while (s.hasNext()) {
+            String[] words = s.nextLine().split("\\|");
+            if (words[0].equals("T")) {
+                list[num] = new Todo(words[2]);
+            } else if (words[0].equals("D")) {
+                list[num] = new Deadline(words[2], words[3]);
+            } else {
+                list[num] = new Event(words[2], words[3]);
+            }
+            if (words[1].equals("1")) {
+                list[num].putTick();
+            }
+            num++;
         }
         return num;
     }

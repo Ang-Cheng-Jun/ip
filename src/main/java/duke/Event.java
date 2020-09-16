@@ -13,8 +13,16 @@ public class Event extends Task {
         category = "[E]";
     }
 
+    public String getCategory() {
+        return "E";
+    }
+
+    public String getAt() {
+        return at;
+    }
+
     @Override
     public String toString() {
-        return this.category + super.toString() + " (at: " + at + ")";
+        return this.category + super.toString() + " (at:" + at + ")";
     }
 }
