@@ -13,8 +13,16 @@ public class Deadline extends Task {
         category = "[D]";
     }
 
+    public String getCategory() {
+        return "D";
+    }
+
+    public String getBy() {
+        return by;
+    }
+
     @Override
     public String toString() {
-        return this.category + super.toString() + " (by: " + by + ")";
+        return this.category + super.toString() + " (by:" + by + ")";
     }
 }

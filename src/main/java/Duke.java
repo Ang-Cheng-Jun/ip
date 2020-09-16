@@ -3,18 +3,28 @@
 import duke.*;
 
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
     //Main Program
     public static void main(String[] args) {
+        String file1 = "data/duke.txt";
+        ArrayList<Task> list = new ArrayList<>();
+        int num = 0;
+        try {
+            num = importFileContents(file1, list);
+        } catch (IOException e) {
+            System.out.println("File not found. Create a new file \n");
+        }
+
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?\n");
 
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
-        ArrayList<Task> list = new ArrayList<>();
-        int num = 0;
 
         while (!command.equals("bye")) {
             String actionType = extractAction(command); //Find out what action to be taken
@@ -40,6 +50,11 @@ public class Duke {
             default :
                 System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
                 break;
+            }
+            try {
+                writeToFile(file1, list, num);
+            } catch (IOException e) {
+                System.out.println("Something went wrong: " + e.getMessage());
             }
             System.out.println("\n");
             command = sc.nextLine(); //Get the next command
@@ -137,6 +152,7 @@ public class Duke {
         return num;
     }
 
+
     //Delete the task
     private static int deleteTask(ArrayList<Task> list, String command, int num) {
         try {
@@ -152,6 +168,44 @@ public class Duke {
             System.out.println("Now you have " + num + " tasks in the list.");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("\u2639 The number is not in the list");
+        }
+        return num;
+    }
+
+    private static void writeToFile(String filePath, ArrayList<Task> list, int num) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        for (int i = 1; i <= num; i++) {
+            if (list.get(i-1).getCategory() == "T") {
+                fw.write(list.get(i-1).getCategory() + "|" + list.get(i-1).getIsDone() + "|" + list.get(i-1).getDescription() + System.lineSeparator());
+            } else if (list.get(i-1).getCategory() == "D") {
+                fw.write(list.get(i-1).getCategory() + "|" + list.get(i-1).getIsDone() + "|" + list.get(i-1).getDescription() + "|" + list.get(i-1).getBy()+ System.lineSeparator());
+            } else {
+                fw.write(list.get(i-1).getCategory() + "|" + list.get(i-1).getIsDone() + "|" + list.get(i-1).getDescription() + "|" + list.get(i-1).getAt()+ System.lineSeparator());
+            }
+        }
+        fw.close();
+    }
+
+    private static int importFileContents(String filePath, ArrayList<Task> list) throws IOException {
+        int num = 0;
+        File dir = new File("data");
+        dir.mkdir();
+        File f = new File(filePath); // create a File for the given file path
+        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        f.createNewFile();
+        while (s.hasNext()) {
+            String[] words = s.nextLine().split("\\|");
+            if (words[0].equals("T")) {
+                list.add(new Todo(words[2]));
+            } else if (words[0].equals("D")) {
+                list.add(new Deadline(words[2], words[3]));
+            } else {
+                list.add(new Event(words[2], words[3]));
+            }
+            if (words[1].equals("1")) {
+                list.get(num).putTick();
+            }
+            num++;
         }
         return num;
     }
