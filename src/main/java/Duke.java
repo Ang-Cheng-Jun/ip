@@ -12,13 +12,10 @@ public class Duke {
     //Main Program
     public static void main(String[] args) {
         String file1 = "data/duke.txt";
-        ArrayList<Task> list = new ArrayList<>();
+        ArrayList<Task> list = new ArrayList<Task>();
         int num = 0;
-        try {
-            num = importFileContents(file1, list);
-        } catch (IOException e) {
-            System.out.println("File not found. Create a new file \n");
-        }
+
+        num = importFileContents(file1, list);
 
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?\n");
@@ -51,11 +48,7 @@ public class Duke {
                 System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
                 break;
             }
-            try {
-                writeToFile(file1, list, num);
-            } catch (IOException e) {
-                System.out.println("Something went wrong: " + e.getMessage());
-            }
+            writeToFile(file1, list);
             System.out.println("\n");
             command = sc.nextLine(); //Get the next command
         }
@@ -172,40 +165,64 @@ public class Duke {
         return num;
     }
 
-    private static void writeToFile(String filePath, ArrayList<Task> list, int num) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
-        for (int i = 1; i <= num; i++) {
-            if (list.get(i-1).getCategory() == "T") {
-                fw.write(list.get(i-1).getCategory() + "|" + list.get(i-1).getIsDone() + "|" + list.get(i-1).getDescription() + System.lineSeparator());
-            } else if (list.get(i-1).getCategory() == "D") {
-                fw.write(list.get(i-1).getCategory() + "|" + list.get(i-1).getIsDone() + "|" + list.get(i-1).getDescription() + "|" + list.get(i-1).getBy()+ System.lineSeparator());
-            } else {
-                fw.write(list.get(i-1).getCategory() + "|" + list.get(i-1).getIsDone() + "|" + list.get(i-1).getDescription() + "|" + list.get(i-1).getAt()+ System.lineSeparator());
+    private static void writeToFile(String filePath, ArrayList<Task> list) {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            for (Task t : list) {
+                switch (t.getCategory()) {
+                case "T":
+                    fw.write(t.getCategory() + "|" + t.getIsDone() + "|" + t.getDescription() + System.lineSeparator());
+                    break;
+                case "D":
+                    fw.write(t.getCategory() + "|" + t.getIsDone() + "|" + t.getDescription() + "|" + t.getBy()+ System.lineSeparator());
+                    break;
+                case "E":
+                    fw.write(t.getCategory() + "|" + t.getIsDone() + "|" + t.getDescription() + "|" + t.getAt()+ System.lineSeparator());
+                    break;
+                default:
+                    break;
+                }
             }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
-        fw.close();
     }
 
-    private static int importFileContents(String filePath, ArrayList<Task> list) throws IOException {
+    private static int importFileContents(String filePath, ArrayList<Task> list) {
         int num = 0;
-        File dir = new File("data");
-        dir.mkdir();
-        File f = new File(filePath); // create a File for the given file path
-        Scanner s = new Scanner(f); // create a Scanner using the File as the source
-        f.createNewFile();
-        while (s.hasNext()) {
-            String[] words = s.nextLine().split("\\|");
-            if (words[0].equals("T")) {
-                list.add(new Todo(words[2]));
-            } else if (words[0].equals("D")) {
-                list.add(new Deadline(words[2], words[3]));
-            } else {
-                list.add(new Event(words[2], words[3]));
+        try {
+            File d = new File("data");
+            if (d.mkdir()) {
+                System.out.println("Directory created successfully");
             }
-            if (words[1].equals("1")) {
-                list.get(num).putTick();
+            File f = new File(filePath); // create a File for the given file path
+            Scanner s = new Scanner(f); // create a Scanner using the File as the source
+            if (f.createNewFile()) {
+                throw new IOException();
             }
-            num++;
+            while (s.hasNext()) {
+                String[] words = s.nextLine().split("\\|");
+                switch (words[0]) {
+                case "T":
+                    list.add(new Todo(words[2]));
+                    break;
+                case "D":
+                    list.add(new Deadline(words[2], words[3]));
+                    break;
+                case "E":
+                    list.add(new Event(words[2], words[3]));
+                    break;
+                default:
+                    break;
+                }
+                if (words[1].equals("1")) {
+                    list.get(num).putTick();
+                }
+                num++;
+            }
+        } catch (IOException e) {
+            System.out.println("File not found. Created a new file \n");
         }
         return num;
     }
