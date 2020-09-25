@@ -1,20 +1,19 @@
-package duke;
+package data.duke;
 
 public class Event extends Task {
 
+    public static final String TYPE_WORD = "E";
     protected String at;
     protected boolean isDone;
-    protected String category;
 
     public Event(String description, String at) {
         super(description);
         this.at = at;
         isDone = false;
-        category = "[E]";
     }
 
     public String getCategory() {
-        return "E";
+        return TYPE_WORD;
     }
 
     public String getAt() {
@@ -23,6 +22,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return this.category + super.toString() + " (at:" + at + ")";
+        return "[" + TYPE_WORD + "]" + super.toString() + " (at:" + at + ")";
     }
 }

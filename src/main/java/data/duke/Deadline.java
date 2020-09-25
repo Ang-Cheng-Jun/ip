@@ -1,20 +1,19 @@
-package duke;
+package data.duke;
 
 public class Deadline extends Task {
 
+    public static final String TYPE_WORD = "D";
     protected String by;
     protected boolean isDone;
-    protected String category;
 
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
         isDone = false;
-        category = "[D]";
     }
 
     public String getCategory() {
-        return "D";
+        return TYPE_WORD;
     }
 
     public String getBy() {
@@ -23,6 +22,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return this.category + super.toString() + " (by:" + by + ")";
+        return "[" + TYPE_WORD + "]" + super.toString() + " (by:" + by + ")";
     }
 }

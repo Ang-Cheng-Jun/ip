@@ -1,22 +1,21 @@
-package duke;
+package data.duke;
 
 public class Todo extends Task {
 
+    public static final String TYPE_WORD = "T";
     protected boolean isDone;
-    protected String category;
 
     public Todo(String description) {
         super(description);
         isDone = false;
-        category = "[T]";
     }
 
     public String getCategory() {
-        return "T";
+        return TYPE_WORD;
     }
 
     @Override
     public String toString() {
-        return this.category + super.toString();
+        return "[" + TYPE_WORD + "]" + super.toString();
     }
 }

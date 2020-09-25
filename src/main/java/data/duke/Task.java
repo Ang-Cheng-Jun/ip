@@ -1,26 +1,24 @@
-package duke;
+package data.duke;
 
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected String category;
-    protected String at;
-    protected String by;
+    private static final String TICK_SYMBOL = "\u2713";
+    private static final String CROSS_SYMBOL = "\u2718";
+    private static final String TICK_NUM = "1";
+    private static final String CROSS_NUM = "0";
 
     public Task(String description) {
         this.description = description;
-        category = "";
         isDone = false;
-        at = "";
-        by = "";
     }
 
     //Get a icon for the task
     public String getStatusIcon() {
-        if(!isDone) {
-            return ("\u2718");
+        if(isDone) {
+            return TICK_SYMBOL;
         } else {
-            return ("\u2713");
+            return CROSS_SYMBOL;
         }
     }
 
@@ -31,25 +29,26 @@ public class Task {
 
     //Get a icon for the task
     public String getIsDone() {
-        if(!isDone) {
-            return ("0");
+        if(isDone) {
+            return TICK_NUM;
         } else {
-            return ("1");
+            return CROSS_NUM;
         }
     }
 
     //Get a icon for the task
     public String getCategory() {
-        return category;
+        throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
 
     public String getBy() {
-        return by;
+        throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
 
     public String getAt() {
-        return at;
+        throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
+
     //Put a tick in the task
     public void putTick() {
         this.isDone = true;
