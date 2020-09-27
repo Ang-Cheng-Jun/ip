@@ -1,7 +1,14 @@
 package parser;
 
 
-import commands.*;
+import commands.Command;
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.DoneCommand;
+import commands.EventCommand;
+import commands.InvalidCommand;
+import commands.ListCommand;
+import commands.TodoCommand;
 import common.Messages;
 import data.exception.DukeException;
 import ui.TextUi;
@@ -46,7 +53,7 @@ public class Parser {
 
     private static Command prepareDeadlineCommand (String arguments){
         try {
-            String description = arguments.substring(0, arguments.indexOf(" /"));
+            String description = arguments.substring(9, arguments.indexOf(" /"));
             String by = arguments.substring(arguments.indexOf("/") + 3);
             if (by.trim().isEmpty()) {
                 throw new DukeException();
