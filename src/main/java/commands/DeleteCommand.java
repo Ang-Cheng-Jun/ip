@@ -1,29 +1,24 @@
 package commands;
 
-import data.TaskList;
-import data.duke.Task;
-
-import java.util.ArrayList;
-
-public class DeleteCommand {
+public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
+    private final int targetedindex;
 
+    public DeleteCommand(String targetedindex) {
+        this.targetedindex = Integer.parseInt(targetedindex) - 1;
+    }
     //Delete the task
-    public static int deleteTask(ArrayList<Task> list, String command, int num) {
+    public void execute() {
         try {
-            String[] word = command.split(" ");
-            int index = Integer.parseInt(word[1]) - 1;
-            if (index >= num) {
+            if (targetedindex >= tasks.getListSize()) {
                 throw new ArrayIndexOutOfBoundsException();
             }
             System.out.println("Noted. I've removed this task: ");
-            System.out.println(" " + list.get(index));
-            list.remove(index);
-            num--;
-            System.out.println("Now you have " + num + " tasks in the list.");
+            System.out.println(" " +  tasks.getTask(targetedindex));
+            tasks.removeTask(targetedindex);
+            System.out.println("Now you have " + tasks.getListSize() + " tasks in the list.");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("\u2639 The number is not in the list");
         }
-        return num;
     }
 }

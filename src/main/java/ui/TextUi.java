@@ -2,6 +2,8 @@ package ui;
 
 import common.Messages;
 
+import java.util.Scanner;
+
 public class TextUi {
 
     public static final int DISPLAYED_INDEX_OFFSET = 1;
@@ -21,5 +23,10 @@ public class TextUi {
         System.out.println(message);
     }
 
-
+    public String getUserCommand() {
+        showToUser("Enter command: ");
+        Scanner sc = new Scanner(System.in);
+        String fullInputLine = sc.nextLine().trim();
+        return fullInputLine;
+    }
 }

@@ -1,6 +1,7 @@
 package storage;
 
 import common.Messages;
+import data.TaskList;
 import data.duke.Deadline;
 import data.duke.Event;
 import data.duke.Task;
@@ -10,7 +11,6 @@ import ui.TextUi;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
@@ -20,10 +20,16 @@ public class Storage {
     private static final String TICK_NUM = "1";
     private static final String TEXTFILE_REGEX = "\\|";
 
-    public static void writeToFile(ArrayList<Task> list) {
+    private final TaskList tasks;
+
+    public Storage (TaskList tasks) {
+        this.tasks = tasks;
+    }
+
+    public void writeToFile() {
         try {
             FileWriter fw = new FileWriter(DEFAULT_STORAGE_FILEPATH);
-            for (Task t : list) {
+            for (Task t : tasks.getAllTasks()) {
                 switch (t.getCategory()) {
                 case Todo.TYPE_WORD:
                     fw.write(t.getCategory()
@@ -63,7 +69,7 @@ public class Storage {
         }
     }
 
-    public static int importFileContents(ArrayList<Task> list) {
+    public void importFileContents() {
         int num = 0;
         try {
             File d = new File(DEFAULT_STORAGE_DIRECTORY);
@@ -83,27 +89,26 @@ public class Storage {
 
                 switch (type) {
                 case Todo.TYPE_WORD:
-                    list.add(new Todo(description));
+                    tasks.addTask(new Todo(description));
                     break;
                 case Deadline.TYPE_WORD:
                     String by = words[3];
-                    list.add(new Deadline(description, by));
+                    tasks.addTask(new Deadline(description, by));
                     break;
                 case Event.TYPE_WORD:
                     String at = words[3];
-                    list.add(new Event(description, at));
+                    tasks.addTask(new Event(description, at));
                     break;
                 default:
                     break;
                 }
                 if (status.equals(TICK_NUM)) {
-                    list.get(num).putTick();
+                    tasks.getTask(num).putTick();
                 }
                 num++;
             }
         } catch (IOException e) {
             TextUi.showToUser(Messages.MESSAGE_FILE_NOT_CREATED);
         }
-        return num;
     }
 }

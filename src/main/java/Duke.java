@@ -1,16 +1,17 @@
+import commands.ByeCommand;
+import commands.Command;
 import common.Messages;
-import data.duke.Task;
+import data.TaskList;
 import parser.Parser;
 import storage.Storage;
 import ui.TextUi;
 
-import java.util.ArrayList;
-
 public class Duke {
 
-    private static int num;
-    private TextUi ui;
-    private ArrayList<Task> list = new ArrayList<>();
+    private static TextUi ui = new TextUi();
+    private static TaskList tasks = new TaskList();
+    private static Storage storage = new Storage(tasks);
+
 
     public static void main(String[] args) {
         new Duke().run();
@@ -18,25 +19,35 @@ public class Duke {
 
     public void run() {
         start();
-        Parser.runCommandLoopUntilByeCommand(list, num);
+        runCommandLoopUntilByeCommand();
         exit();
     }
 
     private void start() {
         this.ui = new TextUi();
-        num = initialise();
+        initialise();
         ui.showWelcomeMessage();
     }
 
-    private void exit() {
+    private static void initialise() {
+        ui.showToUser(Messages.MESSAGE_INITIALISE);
+        storage.importFileContents();
+    }
+
+    private static void exit() {
         ui.showByeMessage();
         System.exit(0);
     }
 
-    private int initialise() {
-        ui.showToUser(Messages.MESSAGE_INITIALISE);
-        num = Storage.importFileContents(list);
-        return num;
+    private static void runCommandLoopUntilByeCommand() {
+        Command command;
+        do {
+            String userCommandText = ui.getUserCommand();
+            command = Parser.parseCommand(userCommandText);
+            command.setData(tasks);
+            command.execute();
+            storage.writeToFile();
+        } while (!ByeCommand.isBye(command));
     }
 
 }

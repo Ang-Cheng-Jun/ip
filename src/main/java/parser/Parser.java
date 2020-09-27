@@ -2,56 +2,78 @@ package parser;
 
 
 import commands.*;
-import data.duke.Task;
-import storage.Storage;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+import common.Messages;
+import data.exception.DukeException;
+import ui.TextUi;
 
 public class Parser {
 
-    private static final String SPACE =" ";
+    private static final String SPACE = " ";
 
-    public static void runCommandLoopUntilByeCommand(ArrayList<Task> list, int num) {
-        Scanner sc = new Scanner(System.in);
-        String command = sc.nextLine().trim();
+    public static Command parseCommand(String userInput) {
+        String[] words = userInput.trim().split(SPACE, 2);
+        final String commandWord = words[0];
+        final String arguments = userInput.replaceFirst(commandWord, "").trim();
 
-        while (!command.equals(ByeCommand.COMMAND_WORD)) {
-            String commandWord = extractAction(command); //Find out what action to be taken
-            switch (commandWord) {
-            case ListCommand.COMMAND_WORD:
-                ListCommand.printList(list,num); //Print the list of tasks
-                break;
-            case DoneCommand.COMMAND_WORD:
-                DoneCommand.markAsDone(list,command, num); //Put a tick in the task
-                break;
-            case TodoCommand.COMMAND_WORD:
-                num = TodoCommand.storeTodo(list,command, num); //Add task under the "td" category
-                break;
-            case DeadlineCommand.COMMAND_WORD:
-                num = DeadlineCommand.storeDeadline(list,command, num); //Add task under the "deadline" category
-                break;
-            case EventCommand.COMMAND_WORD:
-                num = EventCommand.storeEvent(list,command, num); //Add task under the "event" category
-                break;
-            case DeleteCommand.COMMAND_WORD:
-                num = DeleteCommand.deleteTask(list,command, num);
-                break;
-            default :
-                System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
-                break;
-            }
-            Storage.writeToFile(list);
-            System.out.println("\n");
-            command = sc.nextLine(); //Get the next command
+        switch (commandWord) {
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand(); //Print the list of tasks
+        case DoneCommand.COMMAND_WORD:
+            return new DoneCommand(arguments); //Put a tick in the task
+        case TodoCommand.COMMAND_WORD:
+            return prepareTodoCommand(arguments); //Add task under the "td" category
+        case DeadlineCommand.COMMAND_WORD:
+            return prepareDeadlineCommand(arguments);
+        case EventCommand.COMMAND_WORD:
+            return prepareEventCommand(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommand(arguments);
+        default:
+            return new InvalidCommand("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
         }
     }
 
-    //Find out what action to be taken
-    private static String extractAction(String command) {
-        command = command.trim();
-        String [] keyword = command.split(SPACE);
-        return keyword[0];
+    private static Command prepareTodoCommand(String arguments) {
+        try {
+            if(arguments.equals("")){
+                throw new StringIndexOutOfBoundsException();
+            }
+            return new TodoCommand(arguments);
+        } catch (StringIndexOutOfBoundsException e) {
+            return new InvalidCommand(Messages.MESSAGE_DESCRIPTION_EMPTY);
+        }
+    }
+
+    private static Command prepareDeadlineCommand (String arguments){
+        try {
+            String description = arguments.substring(0, arguments.indexOf(" /"));
+            String by = arguments.substring(arguments.indexOf("/") + 3);
+            if (by.trim().isEmpty()) {
+                throw new DukeException();
+            }
+            return new DeadlineCommand(description, by);
+        } catch (StringIndexOutOfBoundsException e) {
+            TextUi.showToUser(Messages.MESSAGE_DESCRIPTION_EMPTY);
+            return new InvalidCommand(Messages.MESSAGE_DESCRIPTION_EMPTY);
+        } catch (DukeException e) {
+            return new InvalidCommand("\u2639 The date/time of a deadline cannot be empty.");
+        }
+    }
+
+    private static Command prepareEventCommand (String arguments){
+        try {
+            String description = arguments.substring(0, arguments.indexOf(" /"));
+            String at = arguments.substring(arguments.indexOf("/") + 3);
+            if (at.trim().isEmpty()) {
+                throw new DukeException();
+            }
+            return new EventCommand(description, at);
+        } catch (StringIndexOutOfBoundsException e) {
+            TextUi.showToUser(Messages.MESSAGE_DESCRIPTION_EMPTY);
+            return new InvalidCommand(Messages.MESSAGE_DESCRIPTION_EMPTY);
+        } catch (DukeException e) {
+            return new InvalidCommand("\u2639 The date/time of a event cannot be empty.");
+        }
     }
 
 }

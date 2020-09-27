@@ -1,17 +1,12 @@
 package commands;
 
-import data.TaskList;
-import data.duke.Task;
-
-import java.util.ArrayList;
-
-public class ListCommand {
+public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
-    public static void printList(ArrayList<Task> list, int num) {
+    public void execute() {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i <= num; i++) {
-            System.out.println(i + "." + list.get(i - 1));
+        for (int i = 1; i <= tasks.getListSize(); i++) {
+            System.out.println(i + "." +  tasks.getTask(i - 1));
         }
     }
 }

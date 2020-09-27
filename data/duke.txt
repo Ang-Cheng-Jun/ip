@@ -1,2 +1,0 @@
-D|0|task| Sunday
-T|1|task

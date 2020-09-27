@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    private static ArrayList<Task> allTask;
+    private ArrayList<Task> allTask;
 
     public TaskList() {
         allTask = new ArrayList<>();
@@ -24,7 +24,11 @@ public class TaskList {
         return allTask.get(index);
     }
 
-    public ArrayList<Task> getAllTask() {
+    public ArrayList<Task> getAllTasks() {
         return allTask;
+    }
+
+    public int getListSize() {
+        return allTask.size();
     }
 }
