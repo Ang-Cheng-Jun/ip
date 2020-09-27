@@ -1,24 +1,26 @@
 package commands;
 
+import static ui.TextUi.showToUser;
+
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
-    private final int targetedindex;
+    private final int targetedIndex;
 
-    public DeleteCommand(String targetedindex) {
-        this.targetedindex = Integer.parseInt(targetedindex) - 1;
+    public DeleteCommand(String targetedIndex) {
+        this.targetedIndex = Integer.parseInt(targetedIndex) - 1;
     }
     //Delete the task
     public void execute() {
         try {
-            if (targetedindex >= tasks.getListSize()) {
+            if (targetedIndex >= taskList.getListSize()) {
                 throw new ArrayIndexOutOfBoundsException();
             }
-            System.out.println("Noted. I've removed this task: ");
-            System.out.println(" " +  tasks.getTask(targetedindex));
-            tasks.removeTask(targetedindex);
-            System.out.println("Now you have " + tasks.getListSize() + " tasks in the list.");
+            showToUser("Noted. I've removed this task: ");
+            showToUser(" " +  taskList.getTask(targetedIndex));
+            taskList.removeTask(targetedIndex);
+            showToUser("Now you have " + taskList.getListSize() + " tasks in the list.");
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("\u2639 The number is not in the list");
+            showToUser("\u2639 The number is not in the list");
         }
     }
 }

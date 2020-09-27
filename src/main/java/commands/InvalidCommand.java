@@ -1,5 +1,7 @@
 package commands;
 
+import static ui.TextUi.showToUser;
+
 public class InvalidCommand extends Command {
     public final String feedbackToUser;
 
@@ -9,6 +11,6 @@ public class InvalidCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.print(this.feedbackToUser + "\n");
+        showToUser(this.feedbackToUser + "\n");
     }
 }

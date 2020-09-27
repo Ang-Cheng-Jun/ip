@@ -2,6 +2,8 @@ package commands;
 
 import data.duke.Event;
 
+import static ui.TextUi.showToUser;
+
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
 
@@ -15,9 +17,9 @@ public class EventCommand extends Command {
 
     //Add task under the "event" category
     public void execute() {
-        tasks.addTask(new Event(description, at));
-        System.out.println("Got it. I've added this task:");
-        System.out.println(" " +  tasks.getTask(tasks.getListSize()- 1));
-        System.out.println("Now you have " + tasks.getListSize() + " tasks in the list.");
+        taskList.addTask(new Event(description, at));
+        showToUser("Got it. I've added this task:");
+        showToUser(" " +  taskList.getTask(taskList.getListSize()- 1));
+        showToUser("Now you have " + taskList.getListSize() + " tasks in the list.");
     }
 }

@@ -3,13 +3,13 @@ package commands;
 import data.TaskList;
 
 public class Command {
-    protected TaskList tasks;
+    protected TaskList taskList;
 
     protected Command() {
     }
 
     public void setData(TaskList tasks) {
-        this.tasks = tasks;
+        this.taskList = tasks;
     }
 
     public void execute() {
