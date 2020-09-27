@@ -6,12 +6,13 @@ import data.duke.Deadline;
 import data.duke.Event;
 import data.duke.Task;
 import data.duke.Todo;
-import ui.TextUi;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import static ui.TextUi.showToUser;
 
 public class Storage {
     private static final String DEFAULT_STORAGE_DIRECTORY = "data";
@@ -65,7 +66,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            TextUi.showToUser(Messages.MESSAGE_WRITE_EXCEPTION + e.getMessage());
+            showToUser(Messages.MESSAGE_WRITE_EXCEPTION + e.getMessage());
         }
     }
 
@@ -74,7 +75,7 @@ public class Storage {
         try {
             File d = new File(DEFAULT_STORAGE_DIRECTORY);
             if (d.mkdir()) {
-                TextUi.showToUser(Messages.MESSAGE_DIRECTORY_CREATED);
+                showToUser(Messages.MESSAGE_DIRECTORY_CREATED);
             }
             File f = new File(DEFAULT_STORAGE_FILEPATH);
             Scanner s = new Scanner(f);
@@ -108,7 +109,7 @@ public class Storage {
                 num++;
             }
         } catch (IOException e) {
-            TextUi.showToUser(Messages.MESSAGE_FILE_NOT_CREATED);
+            showToUser(Messages.MESSAGE_FILE_NOT_CREATED);
         }
     }
 }

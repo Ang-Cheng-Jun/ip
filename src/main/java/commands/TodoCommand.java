@@ -2,6 +2,8 @@ package commands;
 
 import data.duke.Todo;
 
+import static ui.TextUi.showToUser;
+
 public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
 
@@ -13,9 +15,9 @@ public class TodoCommand extends Command {
 
     //Add task under the "td" category
     public void execute() {
-        tasks.addTask(new Todo(description));
-        System.out.println("Got it. I've added this task:");
-        System.out.println(" " + tasks.getTask(tasks.getListSize()- 1));
-        System.out.println("Now you have " + tasks.getListSize() + " tasks in the list.");
+        taskList.addTask(new Todo(description));
+        showToUser("Got it. I've added this task:");
+        showToUser(" " + taskList.getTask(taskList.getListSize()- 1));
+        showToUser("Now you have " + taskList.getListSize() + " tasks in the list.");
     }
 }

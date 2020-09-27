@@ -1,14 +1,7 @@
 package parser;
 
 
-import commands.Command;
-import commands.DeadlineCommand;
-import commands.DeleteCommand;
-import commands.DoneCommand;
-import commands.EventCommand;
-import commands.InvalidCommand;
-import commands.ListCommand;
-import commands.TodoCommand;
+import commands.*;
 import common.Messages;
 import data.exception.DukeException;
 import ui.TextUi;
@@ -35,6 +28,8 @@ public class Parser {
             return prepareEventCommand(arguments);
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommand(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand(arguments);
         default:
             return new InvalidCommand("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
         }
@@ -53,7 +48,7 @@ public class Parser {
 
     private static Command prepareDeadlineCommand (String arguments){
         try {
-            String description = arguments.substring(9, arguments.indexOf(" /"));
+            String description = arguments.substring(0, arguments.indexOf(" /"));
             String by = arguments.substring(arguments.indexOf("/") + 3);
             if (by.trim().isEmpty()) {
                 throw new DukeException();

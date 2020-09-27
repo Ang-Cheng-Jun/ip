@@ -2,6 +2,8 @@ package commands;
 
 import data.duke.Deadline;
 
+import static ui.TextUi.showToUser;
+
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
 
@@ -15,9 +17,9 @@ public class DeadlineCommand extends Command {
 
     //Add task under the "td" category
     public void execute() {
-        tasks.addTask(new Deadline(description, by));
-        System.out.println("Got it. I've added this task:");
-        System.out.println(" " +  tasks.getTask(tasks.getListSize()- 1));
-        System.out.println("Now you have " + tasks.getListSize() + " tasks in the list.");
+        taskList.addTask(new Deadline(description, by));
+        showToUser("Got it. I've added this task:");
+        showToUser(" " +  taskList.getTask(taskList.getListSize()- 1));
+        showToUser("Now you have " + taskList.getListSize() + " tasks in the list.");
     }
 }
