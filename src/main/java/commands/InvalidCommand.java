@@ -14,6 +14,6 @@ public class InvalidCommand extends Command {
 
     @Override
     public void execute() {
-        showToUser(this.feedbackToUser + "\n");
+        showToUser(this.feedbackToUser);
     }
 }

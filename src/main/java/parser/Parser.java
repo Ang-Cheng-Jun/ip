@@ -1,5 +1,6 @@
 package parser;
 
+import commands.ByeCommand;
 import commands.Command;
 import commands.DeadlineCommand;
 import commands.DeleteCommand;
@@ -43,6 +44,8 @@ public class Parser {
             return new DeleteCommand(arguments);
         case FindCommand.COMMAND_WORD:
             return new FindCommand(arguments);
+        case ByeCommand.COMMAND_WORD:
+            return new ByeCommand();
         default:
             return new InvalidCommand(Messages.MESSAGE_INVALID_USER_COMMAND);
         }

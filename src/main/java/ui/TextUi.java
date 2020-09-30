@@ -36,7 +36,6 @@ public class TextUi {
      * Generates and prints the Goodbye message upon the end of the application.
      */
     public void showByeMessage() {
-        printDivider();
         showToUser(Messages.MESSAGE_GOODBYE);
     }
 

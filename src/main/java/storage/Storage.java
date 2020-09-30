@@ -13,7 +13,8 @@ import java.util.Scanner;
 import static ui.TextUi.showToUser;
 
 /**
- * Storage(Import and Export of data to txt.file) of the application.
+ * Storage: Create directory and txt.file (if don't exist).
+ * And import and export of data to txt.file of the application.
  */
 public class Storage {
     private static final String DEFAULT_STORAGE_DIRECTORY = "data";
@@ -76,10 +77,10 @@ public class Storage {
     }
 
     /**
-     * Import all the tasks to TaskList from the txt.file upon the start of the application.
+     * Upon the start of the application, create directory and txt.file (if don't exist).
+     * And import all the tasks to TaskList from the txt.file.
      */
     public void importFileContents() {
-        int num = 0;
         try {
             File d = new File(DEFAULT_STORAGE_DIRECTORY);
             if (d.mkdir()) {
@@ -112,9 +113,8 @@ public class Storage {
                     break;
                 }
                 if (status.equals(TICK_NUM)) {
-                    tasks.getTask(num).putTick();
+                    tasks.getTask(tasks.getListSize() - 1).putTick();
                 }
-                num++;
             }
         } catch (IOException e) {
             showToUser(Messages.MESSAGE_FILE_NOT_CREATED);
