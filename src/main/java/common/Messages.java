@@ -4,6 +4,7 @@ package common;
  * Container for user visible messages.
  */
 public class Messages {
+
     public static final String MESSAGE_INITIALISE = "\nInitialising .....";
     public static final String MESSAGE_FILE_NOT_CREATED = "File not found. Created a new file ";
     public static final String MESSAGE_DIRECTORY_CREATED = "Directory created successfully";
@@ -20,6 +21,9 @@ public class Messages {
     public static final String MESSAGE_NO_MATCH  = "There is no matching tasks in your list:";
     public static final String MESSAGE_INVALID_USER_COMMAND = "\u2639 OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_EMPTY_BY_DEADLINE  = "\u2639 The date/time of a deadline cannot be empty.";
-    public static final String MESSAGE_EMPTY_AT_EVENT  = "\u2639 The date/time of a event cannot be empty.";
+    public static final String MESSAGE_EMPTY_AT_EVENT  = "\u2639 The date/time/location of a event cannot be empty.";
+    public static final String MESSAGE_INVALID_PARAMETER_DEADLINE  = "\u2639 The parameter of deadline should be \"by\"";
+    public static final String MESSAGE_INVALID_PARAMETER_EVENT  = "\u2639 The parameter of event should be \"at\"";
     public static final String SPACE = " ";
+
 }

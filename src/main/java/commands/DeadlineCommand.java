@@ -8,6 +8,7 @@ import static ui.TextUi.showToUser;
  * Add a Deadline_Task to the TaskList
  */
 public class DeadlineCommand extends Command {
+
     public static final String COMMAND_WORD = "deadline";
     private final String description;
     private final String by;
@@ -23,4 +24,5 @@ public class DeadlineCommand extends Command {
         showToUser(Messages.SPACE +  taskList.getTask(taskList.getListSize()- 1));
         showToUser("Now you have " + taskList.getListSize() + " tasks in the list.");
     }
+
 }

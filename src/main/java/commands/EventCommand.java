@@ -8,8 +8,8 @@ import static ui.TextUi.showToUser;
  * Add a Event_Task to the TaskList
  */
 public class EventCommand extends Command {
-    public static final String COMMAND_WORD = "event";
 
+    public static final String COMMAND_WORD = "event";
     private final String description;
     private final String at;
 
@@ -21,7 +21,8 @@ public class EventCommand extends Command {
     public void execute() {
         taskList.addTask(new Event(description, at));
         showToUser(Messages.MESSAGE_ADDED);
-        showToUser(Messages.SPACE +  taskList.getTask(taskList.getListSize()- 1));
+        showToUser(Messages.SPACE +  taskList.getTask(taskList.getListSize() - 1));
         showToUser("Now you have " + taskList.getListSize() + " tasks in the list.");
     }
+
 }

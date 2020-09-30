@@ -8,6 +8,7 @@ import static ui.TextUi.showToUser;
  * Lists all tasks in the TaskList to the user.
  */
 public class ListCommand extends Command {
+
     public static final String COMMAND_WORD = "list";
 
     public void execute() {
@@ -18,4 +19,5 @@ public class ListCommand extends Command {
             i++;
         }
     }
+
 }

@@ -1,8 +1,8 @@
 package data.exception;
 
 /**
- * Signals that data is not key in in certain command .
+ * Signals that the data is not key in certain command .
  */
-public class DukeException extends Exception{
+public class DukeException extends Exception {
     //no code needed
 }

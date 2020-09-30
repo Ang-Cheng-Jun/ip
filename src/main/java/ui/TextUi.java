@@ -60,4 +60,5 @@ public class TextUi {
         printDivider();
         return fullInputLine.trim();
     }
+
 }

@@ -11,6 +11,7 @@ import static ui.TextUi.showToUser;
  * Find a Task from the TaskList.
  */
 public class FindCommand extends Command {
+
     public static final String COMMAND_WORD = "find";
     private final String filterString;
 
@@ -35,6 +36,6 @@ public class FindCommand extends Command {
         } catch (IllegalValueException e) {
             showToUser(Messages.MESSAGE_NO_MATCH);
         }
-
     }
+
 }

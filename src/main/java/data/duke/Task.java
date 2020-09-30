@@ -25,7 +25,7 @@ public class Task {
      * Returns TICK_SYMBOL if tasks is completed for command prompt display.
      */
     public String getStatusIcon() {
-        if(isDone) {
+        if (isDone) {
             return TICK_SYMBOL;
         } else {
             return CROSS_SYMBOL;
@@ -43,7 +43,7 @@ public class Task {
      * Returns TICK_NUM if tasks is completed for txt.file.
      */
     public String getIsDone() {
-        if(isDone) {
+        if (isDone) {
             return TICK_NUM;
         } else {
             return CROSS_NUM;
@@ -76,5 +76,6 @@ public class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
+
 }
 

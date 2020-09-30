@@ -38,4 +38,5 @@ public class Event extends Task {
     public String toString() {
         return "[" + TYPE_WORD + "]" + super.toString() + " (at:" + at + ")";
     }
+
 }

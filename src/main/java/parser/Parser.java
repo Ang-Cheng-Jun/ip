@@ -12,6 +12,7 @@ import commands.ListCommand;
 import commands.TodoCommand;
 import common.Messages;
 import data.exception.DukeException;
+import data.exception.InvalidParameterException;
 
 /**
  * Parses user input.
@@ -59,7 +60,7 @@ public class Parser {
      */
     private static Command prepareTodoCommand(String arguments) {
         try {
-            if(arguments.equals("")){
+            if (arguments.equals("")) {
                 throw new StringIndexOutOfBoundsException();
             }
             return new TodoCommand(arguments);
@@ -77,7 +78,11 @@ public class Parser {
     private static Command prepareDeadlineCommand (String arguments){
         try {
             String description = arguments.substring(0, arguments.indexOf(" /"));
+            String parameter = arguments.substring(arguments.indexOf("/"), arguments.indexOf("/") + 3);
             String by = arguments.substring(arguments.indexOf("/") + 3);
+            if (!parameter.trim().equals("/by")) {
+                throw new InvalidParameterException();
+            }
             if (by.trim().isEmpty()) {
                 throw new DukeException();
             }
@@ -86,6 +91,8 @@ public class Parser {
             return new InvalidCommand(Messages.MESSAGE_DESCRIPTION_EMPTY);
         } catch (DukeException e) {
             return new InvalidCommand(Messages.MESSAGE_EMPTY_BY_DEADLINE);
+        } catch (InvalidParameterException e) {
+            return new InvalidCommand(Messages.MESSAGE_INVALID_PARAMETER_DEADLINE);
         }
     }
 
@@ -98,7 +105,11 @@ public class Parser {
     private static Command prepareEventCommand (String arguments){
         try {
             String description = arguments.substring(0, arguments.indexOf(" /"));
+            String parameter = arguments.substring(arguments.indexOf("/"), arguments.indexOf("/") + 3);
             String at = arguments.substring(arguments.indexOf("/") + 3);
+            if (!parameter.trim().equals("/at")) {
+                throw new InvalidParameterException();
+            }
             if (at.trim().isEmpty()) {
                 throw new DukeException();
             }
@@ -107,6 +118,8 @@ public class Parser {
             return new InvalidCommand(Messages.MESSAGE_DESCRIPTION_EMPTY);
         } catch (DukeException e) {
             return new InvalidCommand(Messages.MESSAGE_EMPTY_AT_EVENT);
+        } catch (InvalidParameterException e) {
+            return new InvalidCommand(Messages.MESSAGE_INVALID_PARAMETER_EVENT);
         }
     }
 

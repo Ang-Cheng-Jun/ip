@@ -6,6 +6,7 @@ import data.TaskList;
  * Represents an executable command.
  */
 public class Command {
+
     protected TaskList taskList;
 
     protected Command() {
@@ -24,4 +25,5 @@ public class Command {
     public void execute() {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
+
 }

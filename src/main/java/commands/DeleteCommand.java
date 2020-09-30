@@ -7,6 +7,7 @@ import static ui.TextUi.showToUser;
  * Deletes a Task from the TaskList.
  */
 public class DeleteCommand extends Command {
+
     public static final String COMMAND_WORD = "delete";
     private final int targetedIndex;
 
@@ -27,4 +28,5 @@ public class DeleteCommand extends Command {
             showToUser(Messages.MESSAGE_NUM_NOT_IN_LIST);
         }
     }
+
 }

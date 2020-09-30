@@ -8,8 +8,8 @@ import static ui.TextUi.showToUser;
  * Add a Todo_Task to the TaskList
  */
 public class TodoCommand extends Command {
-    public static final String COMMAND_WORD = "todo";
 
+    public static final String COMMAND_WORD = "todo";
     private final String description;
 
     public TodoCommand(String description) {
@@ -19,6 +19,7 @@ public class TodoCommand extends Command {
     public void execute() {
         taskList.addTask(new Todo(description));
         showToUser(Messages.MESSAGE_ADDED);
-        showToUser(Messages.SPACE + taskList.getTask(taskList.getListSize()- 1));
+        showToUser(Messages.SPACE + taskList.getTask(taskList.getListSize() - 1));
     }
+
 }

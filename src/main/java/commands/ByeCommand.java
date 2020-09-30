@@ -4,6 +4,7 @@ package commands;
  * Terminates the program.
  */
 public class ByeCommand extends Command {
+
     public static final String COMMAND_WORD = "bye";
 
     public static boolean isBye(Command command) {
@@ -12,4 +13,5 @@ public class ByeCommand extends Command {
 
     public void execute() {
     }
+
 }

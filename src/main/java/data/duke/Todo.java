@@ -1,6 +1,5 @@
 package data.duke;
 
-
 /**
  * Represents a Todo_Task in the TaskList.
  */
@@ -29,4 +28,5 @@ public class Todo extends Task {
     public String toString() {
         return "[" + TYPE_WORD + "]" + super.toString();
     }
+
 }

@@ -1,6 +1,5 @@
 package commands;
 
-
 import common.Messages;
 import static ui.TextUi.showToUser;
 
@@ -8,6 +7,7 @@ import static ui.TextUi.showToUser;
  * Mark a Task from the TaskList to be done.
  */
 public class DoneCommand extends Command {
+
     public static final String COMMAND_WORD = "done";
     private final int targetedIndex;
 
@@ -28,4 +28,5 @@ public class DoneCommand extends Command {
             showToUser(Messages.MESSAGE_NUM_NOT_IN_LIST);
         }
     }
+
 }

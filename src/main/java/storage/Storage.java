@@ -17,12 +17,12 @@ import static ui.TextUi.showToUser;
  * And import and export of data to txt.file of the application.
  */
 public class Storage {
+
     private static final String DEFAULT_STORAGE_DIRECTORY = "data";
     private static final String DEFAULT_STORAGE_FILEPATH = "data/duke.txt";
     private static final String SPLITTER = "|";
     private static final String TICK_NUM = "1";
     private static final String TEXTFILE_REGEX = "\\|";
-
     private final TaskList tasks;
 
     public Storage (TaskList tasks) {
@@ -120,4 +120,5 @@ public class Storage {
             showToUser(Messages.MESSAGE_FILE_NOT_CREATED);
         }
     }
+
 }
