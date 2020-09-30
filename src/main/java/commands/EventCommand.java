@@ -1,9 +1,12 @@
 package commands;
 
+import common.Messages;
 import data.duke.Event;
-
 import static ui.TextUi.showToUser;
 
+/**
+ * Add a Event_Task to the TaskList
+ */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
 
@@ -15,11 +18,10 @@ public class EventCommand extends Command {
         this.at = at;
     }
 
-    //Add task under the "event" category
     public void execute() {
         taskList.addTask(new Event(description, at));
-        showToUser("Got it. I've added this task:");
-        showToUser(" " +  taskList.getTask(taskList.getListSize()- 1));
+        showToUser(Messages.MESSAGE_ADDED);
+        showToUser(Messages.SPACE +  taskList.getTask(taskList.getListSize()- 1));
         showToUser("Now you have " + taskList.getListSize() + " tasks in the list.");
     }
 }

@@ -1,5 +1,8 @@
 package commands;
 
+/**
+ * Terminates the program.
+ */
 public class ByeCommand extends Command {
     public static final String COMMAND_WORD = "bye";
 

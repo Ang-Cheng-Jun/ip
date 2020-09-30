@@ -1,2 +1,4 @@
-E|0|home| Friday
-T|0|book
+E|1|home| Friday
+T|1|task
+T|0|home
+T|0|task
