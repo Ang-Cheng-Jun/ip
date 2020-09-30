@@ -6,14 +6,15 @@ import data.duke.Deadline;
 import data.duke.Event;
 import data.duke.Task;
 import data.duke.Todo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
 import static ui.TextUi.showToUser;
 
+/**
+ * Storage(Import and Export of data to txt.file) of the application.
+ */
 public class Storage {
     private static final String DEFAULT_STORAGE_DIRECTORY = "data";
     private static final String DEFAULT_STORAGE_FILEPATH = "data/duke.txt";
@@ -27,6 +28,10 @@ public class Storage {
         this.tasks = tasks;
     }
 
+    /**
+     * Clear the txt.file and export all the tasks in TaskList to the txt.file
+     * upon the end of every command of the application.
+     */
     public void writeToFile() {
         try {
             FileWriter fw = new FileWriter(DEFAULT_STORAGE_FILEPATH);
@@ -70,6 +75,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Import all the tasks to TaskList from the txt.file upon the start of the application.
+     */
     public void importFileContents() {
         int num = 0;
         try {

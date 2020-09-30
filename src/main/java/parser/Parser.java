@@ -1,27 +1,40 @@
 package parser;
 
-
-import commands.*;
+import commands.Command;
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.DoneCommand;
+import commands.EventCommand;
+import commands.FindCommand;
+import commands.InvalidCommand;
+import commands.ListCommand;
+import commands.TodoCommand;
 import common.Messages;
 import data.exception.DukeException;
-import ui.TextUi;
 
+/**
+ * Parses user input.
+ */
 public class Parser {
 
-    private static final String SPACE = " ";
-
+    /**
+     * Parses user input int command for execution.
+     *
+     * @param userInput full user input string
+     * @return the command based on the user input
+     */
     public static Command parseCommand(String userInput) {
-        String[] words = userInput.trim().split(SPACE, 2);
+        String[] words = userInput.trim().split(Messages.SPACE, 2);
         final String commandWord = words[0];
         final String arguments = userInput.replaceFirst(commandWord, "").trim();
 
         switch (commandWord) {
         case ListCommand.COMMAND_WORD:
-            return new ListCommand(); //Print the list of tasks
+            return new ListCommand();
         case DoneCommand.COMMAND_WORD:
-            return new DoneCommand(arguments); //Put a tick in the task
+            return new DoneCommand(arguments);
         case TodoCommand.COMMAND_WORD:
-            return prepareTodoCommand(arguments); //Add task under the "td" category
+            return prepareTodoCommand(arguments);
         case DeadlineCommand.COMMAND_WORD:
             return prepareDeadlineCommand(arguments);
         case EventCommand.COMMAND_WORD:
@@ -31,10 +44,16 @@ public class Parser {
         case FindCommand.COMMAND_WORD:
             return new FindCommand(arguments);
         default:
-            return new InvalidCommand("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("); //Show error because invalid input
+            return new InvalidCommand(Messages.MESSAGE_INVALID_USER_COMMAND);
         }
     }
 
+    /**
+     * Parses arguments in the context of the TodoCommand.
+     *
+     * @param arguments full command args string
+     * @return the prepared command
+     */
     private static Command prepareTodoCommand(String arguments) {
         try {
             if(arguments.equals("")){
@@ -46,6 +65,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses arguments in the context of the DeadlineCommand.
+     *
+     * @param arguments full command args string
+     * @return the prepared command
+     */
     private static Command prepareDeadlineCommand (String arguments){
         try {
             String description = arguments.substring(0, arguments.indexOf(" /"));
@@ -55,13 +80,18 @@ public class Parser {
             }
             return new DeadlineCommand(description, by);
         } catch (StringIndexOutOfBoundsException e) {
-            TextUi.showToUser(Messages.MESSAGE_DESCRIPTION_EMPTY);
             return new InvalidCommand(Messages.MESSAGE_DESCRIPTION_EMPTY);
         } catch (DukeException e) {
-            return new InvalidCommand("\u2639 The date/time of a deadline cannot be empty.");
+            return new InvalidCommand(Messages.MESSAGE_EMPTY_BY_DEADLINE);
         }
     }
 
+    /**
+     * Parses arguments in the context of the EventCommand.
+     *
+     * @param arguments full command args string
+     * @return the prepared command
+     */
     private static Command prepareEventCommand (String arguments){
         try {
             String description = arguments.substring(0, arguments.indexOf(" /"));
@@ -71,10 +101,9 @@ public class Parser {
             }
             return new EventCommand(description, at);
         } catch (StringIndexOutOfBoundsException e) {
-            TextUi.showToUser(Messages.MESSAGE_DESCRIPTION_EMPTY);
             return new InvalidCommand(Messages.MESSAGE_DESCRIPTION_EMPTY);
         } catch (DukeException e) {
-            return new InvalidCommand("\u2639 The date/time of a event cannot be empty.");
+            return new InvalidCommand(Messages.MESSAGE_EMPTY_AT_EVENT);
         }
     }
 

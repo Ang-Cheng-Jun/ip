@@ -1,13 +1,15 @@
 package commands;
 
+import common.Messages;
 import data.duke.Task;
-import data.exception.DukeException;
-
+import data.exception.IllegalValueException;
 import java.util.ArrayList;
-
 import static java.util.stream.Collectors.toList;
 import static ui.TextUi.showToUser;
 
+/**
+ * Find a Task from the TaskList.
+ */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     private final String filterString;
@@ -22,16 +24,16 @@ public class FindCommand extends Command {
                 .filter((s) -> s.getDescription().contains(filterString))
                 .collect(toList());
             if (filterTaskList.isEmpty()){
-                throw new DukeException();
+                throw new IllegalValueException();
             }
-            showToUser("Here are the matching tasks in your list:");
+            showToUser(Messages.MESSAGE_MATCH_LIST);
             int i = 1;
             for (Task t : filterTaskList) {
                 showToUser(i + "." + t);
                 i++;
             }
-        } catch (DukeException e) {
-            showToUser("There is no matching tasks in your list:");
+        } catch (IllegalValueException e) {
+            showToUser(Messages.MESSAGE_NO_MATCH);
         }
 
     }

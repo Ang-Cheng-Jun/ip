@@ -1,6 +1,11 @@
 package data.duke;
 
+/**
+ * Represents a Task in the TaskList.
+ * Guarantees: details are present and not null, field values are validated.
+ */
 public class Task {
+
     protected String description;
     protected boolean isDone;
     private static final String TICK_SYMBOL = "\u2713";
@@ -8,12 +13,17 @@ public class Task {
     private static final String TICK_NUM = "1";
     private static final String CROSS_NUM = "0";
 
+    /**
+     * Assumption: Every field must be present and not null.
+     */
     public Task(String description) {
         this.description = description;
         isDone = false;
     }
 
-    //Get a icon for the task
+    /**
+     * Returns TICK_SYMBOL if tasks is completed for command prompt display.
+     */
     public String getStatusIcon() {
         if(isDone) {
             return TICK_SYMBOL;
@@ -22,12 +32,16 @@ public class Task {
         }
     }
 
-    //Get a icon for the task
+    /**
+     * Returns description of the Task.
+     */
     public String getDescription() {
         return description;
     }
 
-    //Get a icon for the task
+    /**
+     * Returns TICK_NUM if tasks is completed for txt.file.
+     */
     public String getIsDone() {
         if(isDone) {
             return TICK_NUM;
@@ -36,7 +50,9 @@ public class Task {
         }
     }
 
-    //Get a icon for the task
+    /**
+     * Copy constructor.
+     */
     public String getCategory() {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
@@ -49,7 +65,9 @@ public class Task {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
 
-    //Put a tick in the task
+    /**
+     * Change the isDone to true once markToDone is executed.
+     */
     public void putTick() {
         this.isDone = true;
     }
