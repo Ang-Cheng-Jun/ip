@@ -143,7 +143,7 @@ that contains the data of your previous Duke home folder.
 -------------------------
 ### Command summary
 |Action | Command | Example|
-|-------|-------- |--------|
+|---|---|---|
 |**todo**| `todo DESCRIPTION` | e.g.,`todo market research`|
 |**deadline**| `deadline DESCRIPTION /by DATE` | e.g.,`deadline powerpoint slide /by 7th April`|
 |**event**| `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` | e.g.,`event project meeting /at 1-3pm Monday`|
