@@ -142,15 +142,15 @@ that contains the data of your previous Duke home folder.
 
 -------------------------
 ### Command summary
-Action | Command 
--------|--------
-**todo**| `todo DESCRIPTION` e.g.,`todo market research`
-**deadline**| `deadline DESCRIPTION /by DATE` <br> e.g.,`deadline powerpoint slide /by 7th April`
-**event**| `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION`  e.g.,`event project meeting /at 1-3pm Monday`
-**list**| `list` 
-**done**| `done INDEX` e.g.,`done 2`
-**delete**| `delete INDEX`  e.g.,`delete 2`
-**find**| `find KEYWORD`  e.g.,`find project`
-**bye**| `bye` 
+Action | Command | Example
+-------|-------- |--------
+**todo**| `todo DESCRIPTION` | e.g.,`todo market research`
+**deadline**| `deadline DESCRIPTION /by DATE` | e.g.,`deadline powerpoint slide /by 7th April`
+**event**| `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` | e.g.,`event project meeting /at 1-3pm Monday`
+**list**| `list` | e.g.,`list`
+**done**| `done INDEX` | e.g.,`done 2`
+**delete**| `delete INDEX` | e.g.,`delete 2`
+**find**| `find KEYWORD` | e.g.,`find project`
+**bye**| `bye` | e.g.,`bye`
 
 
