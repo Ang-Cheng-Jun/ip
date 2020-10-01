@@ -1,4 +1,4 @@
-# User Guide
+# Duke User Guide
 
 Duke is an **desktop app for keeping track of tasks, optimised via a Command Line Interface (CLI)**.
 The app allows you to add the tasks by the category with date, time and location, delete, finds
@@ -31,7 +31,9 @@ from the text file and loads the task list back.
 
 4.  Open your command prompt as administrator. Then input java -jar **c:pathtojarfile.jar** in 
 Command Prompt and press ENTER. Replace the **c:pathtojarfile.jar** with the actual path and 
-file title of the Jar.
+file title of the Jar. The display similar to the below should appear in a few seconds.
+
+    ![](images/Start%20Image.PNG)
 
 5.  Type the command in the command box and press Enter to execute it. 
 e.g. typing `bye` and pressing Enter, it will exit the program.
@@ -70,6 +72,7 @@ Examples:
 *   `todo market research`
 *   `todo market survey`  
 
+   ![](images/Todo%20Image.PNG)
 <br/><br/>
 #### Adding a deadline task: `deadline`
 Adds a deadline task to the task list.
@@ -80,6 +83,7 @@ Examples:
 *   `deadline powerpoint slide /by 7th April`
 *   `deadline report /by 23th June`
 
+   ![](images/Deadline%20Image.PNG)
 <br/><br/>
 #### Adding an event task: `event` 
 Adds an event task to the task list. You can input TIME/LOCATION after "/at".
@@ -88,14 +92,16 @@ Format: `event DESCRIPTION /at TIME` OR `event DESCRIPTION /at LOCATION`
 
 Examples: 
 *   `event project meeting /at 1-3pm Monday`
-*   `event project presentation /at `
+*   `event project presentation /at NUS`
 
+   ![](images/Event%20Image.PNG)
 <br/><br/>
 #### Listing all tasks: `list`
 Shows a list of all tasks in the task list.
 
 Format: `list`
 
+   ![](images/List%20Image.PNG)
 <br/><br/>
 #### Deleting a task: `delete`
 Deletes the specified task from the task list.
@@ -109,6 +115,7 @@ Format: `delete INDEX`
 Examples:
 *   `list` followed by `delete 2` deletes the 2nd task in the task list.
 
+   ![](images/Delete%20Image.PNG)
 <br/><br/>
 #### Finding tasks with the keyword: `find` 
 Find tasks whose description contain the given keyword.
@@ -123,6 +130,7 @@ Examples:
 *   `find project` returns `project meeting` and `project presentation`
 *   `find market` returns `market research` and `market survey`
 
+   ![](images/Find%20Image.PNG)
 <br/><br/> 
 #### Marking a task as done: `done`
 Mark the specified task from the task list as done.
@@ -136,12 +144,14 @@ Format: `done INDEX`
 Examples:
 *   `list` followed by `done 2` marks the 2nd task in the task list as done.
 
+   ![](images/Done%20Image.PNG)
 <br/><br/>
 #### Exiting the program: `bye`
 Exits the program.
 
 Format: `bye`
 
+   ![](images/Bye%20Image.PNG)
 <br/><br/>
 #### Saving the data
 Duke will auto-save the task list data in the hard disk after 
@@ -157,15 +167,15 @@ that contains the data of your previous Duke home folder.
 
 ## Command summary
 
-| Action  | Command | Example |
+| Format  | Usage | Example |
 | --------- | ------ | ------- |
-| **todo** | `todo DESCRIPTION` | `todo market research` |
-| **deadline** | `deadline DESCRIPTION /by DATE` | `deadline powerpoint slide /by 7th April`|
-| **event** | `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` | `event project meeting /at 1-3pm Monday` |
-| **list** | `list` | `list` |
-| **delete** | `delete INDEX` | `delete 2` |
-| **find** | `find KEYWORD` | `find project` |
-| **done** | `done INDEX`| `done 2` |
-| **bye** | `bye` | `bye` |
+| **Todo** | `todo DESCRIPTION` | `todo market research` |
+| **Deadline** | `deadline DESCRIPTION /by DATE` | `deadline powerpoint slide /by 7th April`|
+| **Event** | `event DESCRIPTION /at TIME` or <br>`event DESCRIPTION /at LOCATION` | `event project meeting /at 1-3pm Monday` or <br> `event project presentation /at NUS` |
+| **List** | `list` | `list` |
+| **Delete** | `delete INDEX` | `delete 2` |
+| **Find** | `find KEYWORD` | `find project` |
+| **Done** | `done INDEX`| `done 2` |
+| **Bye** | `bye` | `bye` |
 
 
