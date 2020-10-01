@@ -11,12 +11,13 @@ from the text file and loads the task list back.
 ### Quick start
 1.  Ensure you have Java `11` or above installed in your Computer.
 
-2.  Download the latest `duke.jar` from here.
+2.  Download the latest `duke.jar` from [here](https://github.com/Ang-Cheng-Jun/ip/releases/tag/v0.1).
 
 3.  Copy the file to the folder you want to use as the home folder for your Duke.
 
-4.  Double-click the file to start the app. The GUI similar to the below 
-should appear in a few seconds. Note how the app contains some sample data.
+4.  Open your command prompt as administrator. Then input java -jar **c:pathtojarfile.jar** in 
+Command Prompt and press ENTER. Replace the **c:pathtojarfile.jar** with the actual path and 
+file title of the Jar.
 
 5.  Type the command in the command box and press Enter to execute it. 
 e.g. typing `bye` and pressing Enter, it will exit the program.
@@ -40,11 +41,11 @@ Some example commands you can try:
 
 ## 
 ### Features 
-   Notes about the command format
-   * Words in UPPER_CASE are the parameters to be supplied by the user.
-   e.g. in event DESCRIPTION /at TIME, TIME is a parameter which can be used as 
-   `event project meeting /at 1pm-3pm`.
-  
+    Notes about the command format
+    * Words in UPPER_CASE are the parameters to be supplied by the user.
+     e.g. in deadline DESCRIPTION /by DATE, DATE is a parameter which can be used as 
+    `deadline project meeting /by 7th April`.
+
 #### Adding a todo task: `todo`
 Adds a todo task to the task list.
 
@@ -53,7 +54,8 @@ Format: `todo DESCRIPTION`
 Examples: 
 *   `todo market research`
 *   `todo market survey`  
-   
+
+<br/><br/>
 #### Adding a deadline task: `deadline`
 Adds a deadline task to the task list.
 
@@ -62,7 +64,8 @@ Format: `deadline DESCRIPTION /by DATE`
 Examples: 
 *   `deadline powerpoint slide /by 7th April`
 *   `deadline report /by 23th June`
- 
+
+<br/><br/>
 #### Adding an event task: `event` 
 Adds an event task to the task list. You can input TIME/LOCATION after "/at".
 
@@ -72,12 +75,13 @@ Examples:
 *   `event project meeting /at 1-3pm Monday`
 *   `event project presentation /at `
 
+<br/><br/>
 #### Listing all tasks: `list`
 Shows a list of all tasks in the task list.
 
 Format: `list`
 
-
+<br/><br/>
 #### Deleting a task: `delete`
 Deletes the specified task from the task list.
 
@@ -90,6 +94,7 @@ Format: `delete INDEX`
 Examples:
 *   `list` followed by `delete 2` deletes the 2nd task in the task list.
 
+<br/><br/>
 #### Locating task by description: `find` 
 Find tasks whose description contain any of the given keywords.
 
@@ -102,7 +107,8 @@ Format: `find KEYWORD`
 Examples:
 *   `find project` returns `project meeting` and `project presentation`
 *   `find market` returns `market research` and `market survey`
- 
+
+<br/><br/> 
 #### Marking a task as completed: `done`
 Mark the specified task from the task list as done.
 
@@ -115,11 +121,13 @@ Format: `done INDEX`
 Examples:
 *   `list` followed by `done 2` marks the 2nd task in the task list as done.
 
+<br/><br/>
 #### Exiting the program: `bye`
 Exits the program.
 
 Format: `bye`
 
+<br/><br/>
 #### Saving the date
 Duke will auto-save the task list data in the hard disk after 
 any command that changes the data. There is no need to save manually.
@@ -135,11 +143,13 @@ that contains the data of your previous Duke home folder.
 ### Command summary
 Action | Command 
 -------|--------
-**todo**| `todo DESCRIPTION` <br> e.g.,`todo market research`
-**deadline**| `deadline DESCRIPTION /by DATE` <br> e.g.,`deadline powerpoint slide /by 7th April`
-**event**| `event DESCRIPTION /at TIME` OR `event DESCRIPTION /at LOCATION` <br> e.g.,`event project meeting /at 1-3pm Monday`
-**list**| `list` 
-**done**| `done INDEX` <br> e.g.,`done 2`
-**delete**| `delete INDEX` <br> e.g.,`delete 2`
-**find**| `find KEYWORD` <br> e.g.,`find project`
-**bye**| `bye` 
+**todo**| <code>`todo DESCRIPTION` <br> e.g.,`todo market research`</code>
+**deadline**| <code>`deadline DESCRIPTION /by DATE` <br> e.g.,`deadline powerpoint slide /by 7th April`</code>
+**event**| <code>`event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` <br> e.g.,`event project meeting /at 1-3pm Monday`</code>
+**list**| <code>`list` </code>
+**done**| <code>`done INDEX` <br> e.g.,`done 2`</code>
+**delete**| <code>`delete INDEX` <br> e.g.,`delete 2`</code>
+**find**| <code>`find KEYWORD` <br> e.g.,`find project`</code>
+**bye**| <code>`bye` </code>
+
+
