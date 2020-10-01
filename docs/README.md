@@ -7,7 +7,7 @@ Duke has an auto-saved feature that will automatically save the current task lis
 and export it to a text file. Upon start of the application, it will import the data 
 from the text file and loads the task list back.
 
-## 
+-------------------------
 ### Quick start
 1.  Ensure you have Java `11` or above installed in your Computer.
 
@@ -39,12 +39,13 @@ Some example commands you can try:
              
 6.  Refer to the Features below for details of each command.
 
-## 
+-------------------------
 ### Features 
-    Notes about the command format
-    * Words in UPPER_CASE are the parameters to be supplied by the user.
-     e.g. in deadline DESCRIPTION /by DATE, DATE is a parameter which can be used as 
-    `deadline project meeting /by 7th April`.
+   **Notes about the command format**
+    
+   * Words in UPPER_CASE are the parameters to be supplied by the user.
+    <br>e.g. in deadline DESCRIPTION /by DATE, DATE is a parameter which can be used as 
+   `deadline project meeting /by 7th April`.
 
 #### Adding a todo task: `todo`
 Adds a todo task to the task list.
@@ -132,24 +133,24 @@ Format: `bye`
 Duke will auto-save the task list data in the hard disk after 
 any command that changes the data. There is no need to save manually.
 
-## 
+-------------------------
 ### FAQ
 **Q**: How do I transfer my data to another Computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
 that contains the data of your previous Duke home folder.
 
-## 
+-------------------------
 ### Command summary
 Action | Command 
 -------|--------
-**todo**| <code>`todo DESCRIPTION` <br> e.g.,`todo market research`</code>
-**deadline**| <code>`deadline DESCRIPTION /by DATE` <br> e.g.,`deadline powerpoint slide /by 7th April`</code>
-**event**| <code>`event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` <br> e.g.,`event project meeting /at 1-3pm Monday`</code>
-**list**| <code>`list` </code>
-**done**| <code>`done INDEX` <br> e.g.,`done 2`</code>
-**delete**| <code>`delete INDEX` <br> e.g.,`delete 2`</code>
-**find**| <code>`find KEYWORD` <br> e.g.,`find project`</code>
-**bye**| <code>`bye` </code>
+**todo**| `todo DESCRIPTION` e.g.,`todo market research`
+**deadline**| `deadline DESCRIPTION /by DATE` <br> e.g.,`deadline powerpoint slide /by 7th April`
+**event**| `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION`  e.g.,`event project meeting /at 1-3pm Monday`
+**list**| `list` 
+**done**| `done INDEX` e.g.,`done 2`
+**delete**| `delete INDEX`  e.g.,`delete 2`
+**find**| `find KEYWORD`  e.g.,`find project`
+**bye**| `bye` 
 
 
