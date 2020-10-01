@@ -21,8 +21,8 @@ from the text file and loads the task list back.
   * [Saving the data](#saving-the-data)
 * [Command summary](#command-summary)
 
--------------------------
-### Quick start
+## Quick start
+
 1.  Ensure you have Java `11` or above installed in your Computer.
 
 2.  Download the latest `duke.jar` from [here](https://github.com/Ang-Cheng-Jun/ip/releases/tag/v0.1).
@@ -53,8 +53,8 @@ Some example commands you can try:
              
 6.  Refer to the Features below for details of each command.
 
--------------------------
-### Features 
+## Features 
+
    **Notes about the command format**
     
    * Words in UPPER_CASE are the parameters to be supplied by the user.
@@ -147,24 +147,25 @@ Format: `bye`
 Duke will auto-save the task list data in the hard disk after 
 any command that changes the data. There is no need to save manually.
 
--------------------------
-### FAQ
+
+## FAQ
+
 **Q**: How do I transfer my data to another Computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
 that contains the data of your previous Duke home folder.
 
--------------------------
-### Command summary
-| Action | Command | Example |
-| --- | --- | --- |
-| **todo** | `todo DESCRIPTION` | e.g.,`todo market research` |
-| **deadline** | `deadline DESCRIPTION /by DATE` | e.g.,`deadline powerpoint slide /by 7th April` |
-| **event** | `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` | e.g.,`event project meeting /at 1-3pm Monday` |
-| **list** | `list` | e.g.,`list` |
-| **done** | `done INDEX` | e.g.,`done 2` |
-| **delete** | `delete INDEX` | e.g.,`delete 2` |
-| **find** | `find KEYWORD` | e.g.,`find project` |
-| **bye** | `bye` | e.g.,`bye` |
+## Command summary
+
+| Action  | Command | Example |
+| --------- | ------ | ------- |
+| ToDo | `todo TASK_DESCRIPTION` | `todo English Essay` |
+| Deadline | `deadline TASK_DESCRIPTION /by DATE` | `deadline English Essay /by June 23th`|
+| Event | `event TASK_DESCRIPTION /at DATE_TIME` | `event English Essay /at Monday` |
+| List | `list` | `list` |
+| Done | `done INDEX`| `done 2` |
+| Delete | `delete INDEX` | `delete 3` |
+| Find | `find KEY_WORD` | `find Essay` |
+| Bye | `bye` | `bye` |
 
 
