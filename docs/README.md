@@ -159,13 +159,13 @@ that contains the data of your previous Duke home folder.
 
 | Action  | Command | Example |
 | --------- | ------ | ------- |
-| ToDo | `todo TASK_DESCRIPTION` | `todo English Essay` |
-| Deadline | `deadline TASK_DESCRIPTION /by DATE` | `deadline English Essay /by June 23th`|
-| Event | `event TASK_DESCRIPTION /at DATE_TIME` | `event English Essay /at Monday` |
-| List | `list` | `list` |
-| Done | `done INDEX`| `done 2` |
-| Delete | `delete INDEX` | `delete 3` |
-| Find | `find KEY_WORD` | `find Essay` |
-| Bye | `bye` | `bye` |
+| **todo** | `todo DESCRIPTION` | `todo market research` |
+| **deadline** | `deadline DESCRIPTION /by DATE` | `deadline powerpoint slide /by 7th April`|
+| **event** | `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` | `event project meeting /at 1-3pm Monday` |
+| **list** | `list` | `list` |
+| **delete** | `delete INDEX` | `delete 2` |
+| **find** | `find KEYWORD` | `find project` |
+| **done** | `done INDEX`| `done 2` |
+| **bye** | `bye` | `bye` |
 
 
