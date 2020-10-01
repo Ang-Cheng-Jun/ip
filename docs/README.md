@@ -7,6 +7,20 @@ Duke has an auto-saved feature that will automatically save the current task lis
 and export it to a text file. Upon start of the application, it will import the data 
 from the text file and loads the task list back.
 
+## Table of Contents
+* [Quick start](#quick-start)
+* [Features](#features) 
+  * [Adding a todo task: `todo`](#adding-a-todo-task-todo) 
+  * [Adding a deadline task: `deadline`](#adding-a-deadline-task-deadline)
+  * [Adding an event task: `event`](#adding-an-event-task-event)
+  * [Listing all tasks: `list`](#listing-all-tasks-list)
+  * [Deleting a task: `delete`](#deleting-a-task-delete)
+  * [Finding tasks wth the keyword: `find`](#finding-tasks-with-the-keyword-find)
+  * [Marking a task as done: `done`](#marking-a-task-as-done-done)
+  * [Exiting The Program: `bye`](#exiting-the-program-bye)
+  * [Saving the data](#saving-the-data)
+* [Command summary](#command-summary)
+
 -------------------------
 ### Quick start
 1.  Ensure you have Java `11` or above installed in your Computer.
@@ -96,12 +110,12 @@ Examples:
 *   `list` followed by `delete 2` deletes the 2nd task in the task list.
 
 <br/><br/>
-#### Locating task by description: `find` 
-Find tasks whose description contain any of the given keywords.
+#### Finding tasks with the keyword: `find` 
+Find tasks whose description contain the given keyword.
 
 Format: `find KEYWORD`
 
-*   The search is case-sensitive.
+*   The search is case-sensitive, and only accept one keyword.
 *   Only the description is searched.
 *   Tasks description containing the keyword will be returned
 
@@ -110,7 +124,7 @@ Examples:
 *   `find market` returns `market research` and `market survey`
 
 <br/><br/> 
-#### Marking a task as completed: `done`
+#### Marking a task as done: `done`
 Mark the specified task from the task list as done.
 
 Format: `done INDEX`
@@ -129,7 +143,7 @@ Exits the program.
 Format: `bye`
 
 <br/><br/>
-#### Saving the date
+#### Saving the data
 Duke will auto-save the task list data in the hard disk after 
 any command that changes the data. There is no need to save manually.
 
@@ -142,15 +156,15 @@ that contains the data of your previous Duke home folder.
 
 -------------------------
 ### Command summary
-|Action | Command | Example|
+| Action | Command | Example |
 |---|---|---|
-|**todo**| `todo DESCRIPTION` | e.g.,`todo market research`|
-|**deadline**| `deadline DESCRIPTION /by DATE` | e.g.,`deadline powerpoint slide /by 7th April`|
-|**event**| `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` | e.g.,`event project meeting /at 1-3pm Monday`|
-|**list**| `list` | e.g.,`list`|
-|**done**| `done INDEX` | e.g.,`done 2`|
-|**delete**| `delete INDEX` | e.g.,`delete 2`|
-|**find**| `find KEYWORD` | e.g.,`find project`|
-|**bye**| `bye` | e.g.,`bye`|
+| **todo** | `todo DESCRIPTION` | e.g.,`todo market research` |
+| **deadline** | `deadline DESCRIPTION /by DATE` | e.g.,`deadline powerpoint slide /by 7th April` |
+| **event** | `event DESCRIPTION /at TIME` or `event DESCRIPTION /at LOCATION` | e.g.,`event project meeting /at 1-3pm Monday` |
+| **list** | `list` | e.g.,`list` |
+| **done** | `done INDEX` | e.g.,`done 2` |
+| **delete** | `delete INDEX` | e.g.,`delete 2` |
+| **find** | `find KEYWORD` | e.g.,`find project` |
+| **bye** | `bye` | e.g.,`bye` |
 
 
