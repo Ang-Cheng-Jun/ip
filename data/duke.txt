@@ -1,2 +1,0 @@
-E|0|hi| Sunday
-D|1|event| Sunday

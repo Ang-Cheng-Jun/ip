@@ -20,6 +20,7 @@ public class TodoCommand extends Command {
         taskList.addTask(new Todo(description));
         showToUser(Messages.MESSAGE_ADDED);
         showToUser(Messages.SPACE + taskList.getTask(taskList.getListSize() - 1));
+        showToUser("Now you have " + taskList.getListSize() + " tasks in the list.");
     }
 
 }
