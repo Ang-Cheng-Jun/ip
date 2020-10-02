@@ -18,7 +18,7 @@ public class DoneCommand extends Command {
 
     public void execute() {
         try {
-            if (targetedIndex >= taskList.getListSize()) {
+            if (targetedIndex >= taskList.getListSize() || targetedIndex < 0) {
                 throw new ArrayIndexOutOfBoundsException();
             }
             taskList.getTask(targetedIndex).putTick();
