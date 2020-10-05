@@ -7,7 +7,7 @@ import storage.Storage;
 import ui.TextUi;
 
 /**
- * Entry point of the PersonBook application.
+ * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
  */
 
